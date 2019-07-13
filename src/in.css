@@ -1,0 +1,129 @@
+.upper{
+	margin-top:50px;
+	margin-left:600px;
+	font-size:100px;
+	color:tomato;
+}
+
+.main{
+height: 70px;
+width: 500px;
+margin-top:10px;
+margin-left: 500px;
+background-color: white; 
+padding-top: 5px;
+padding-left: 100px;
+font-size: 20px;
+
+}
+
+.injs{
+	height: 50px;
+	width: 400px;
+	margin-top: 0px;
+	margin-left: 500px;
+	background-color: white;
+	font-size: 20px;
+	padding-left: 100px;
+	padding-top: 10px;
+	border-top: solid black 1px;
+}
+
+.indiv{
+	height: 30px;
+	width: 400px;
+	
+	margin-left: 500px;
+	background-color: white;
+	font-size: 20px;
+	padding-left: 100px;
+	padding-top: 5px;
+	border-top: solid black 1px;
+	
+}
+
+.bottomleft{
+	
+	height: 15px;
+	width: 30%;
+	margin-top: -3px;
+	margin-left: -70px;
+	color: black;
+	font-size: 15px;
+	padding-top: 10px;
+}
+
+.left{
+	
+	height: 20px;
+	width: 20px;
+	float: left;
+	margin-left: -95px;
+
+}
+
+.right{
+	
+	height: 20px;
+	width: 20px;
+	float: right;
+	margin-top:-20px;
+	margin-right: 5px;
+}
+
+.bottomright{
+	
+	height: 25px;
+	width: 200px;
+	float: right;
+	margin-right: 100px;
+	margin-top: -20px;
+   
+    
+}
+
+.btn{
+	height: 30px;
+    font-size: 12px;
+    border: none;
+    padding: 3px;
+
+}
+.brght{
+	font-size: 12px;
+	float: right;
+	margin-right: -290px;
+    margin-top:-12px;
+}
+.brght:hover{text-decoration: underline;}
+
+ .btn:hover{
+ 	border: 1px solid red;
+ 	border-radius: 5px;
+ }
+
+ .btn.active {
+	border: 1px solid green;
+}
+
+#check{}
+
+
+ .checkboxround
+                {
+                           height: 40px;
+                           width: 40px;
+                           margin-left: -90px;
+                           border-radius: 90px;
+                           border: 2px solid black;
+                           padding: 20px;
+                           color: green;
+                           position: fixed;
+			   }
+
+.small{
+	float:right;
+	height:10px;
+	width:10px;
+	font-weight: bold;
+}

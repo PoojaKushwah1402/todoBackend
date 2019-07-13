@@ -1,0 +1,38 @@
+<html>
+<head>
+ <title>todos</title>
+ <link rel="stylesheet" type="text/css" href="in.css">
+ <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</head>
+
+<body bgcolor = "gray">
+	<div class="upper"> todos
+</div>
+
+<div>
+	<input id="myInput" class="main"   type="text" name="todoname" placeholder="WHATS NEEDS TO BE DONE?" />
+</div>
+
+<div id="listItem">
+</div>
+
+<div class="indiv" id="first">
+     <div class="bottomleft" id="second"> 0 Items</div>
+  	 <div class="bottomright" id="third">
+  	  <a class="btn active" id="allFilter">All</a>
+  	  <a class="btn" id="activeFilter" >Active</a> 
+  	  <a class="btn" id="completedFilter">completed</a>
+  	</div>
+  	 <a class="brght" id="clearCompleted">Clear Complete</a>
+</div>
+
+<!-- <script src="in.js"> -->
+<script src="model.js" ></script> 
+<script src="handler.js" ></script>
+
+
+</body>
+</html>
