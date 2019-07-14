@@ -17,14 +17,14 @@
         input.className='checkboxround';
         newdiv.appendChild(input);
         newdiv.appendChild(smalldiv);
-        buttonfunction(smalldiv,todo.id);
+        buttonfunction(smalldiv,todo);
         return newdiv;
     }
 
-    function buttonfunction(smalldiv,id) {
+    function buttonfunction(smalldiv,todo) {
         smalldiv.addEventListener("click",function(event){
-            window.todos.removetodo(id);
-            window.todos.getFilteredTodos();
+            window.todos.removetodo(todo);
+           
         });
     }
 

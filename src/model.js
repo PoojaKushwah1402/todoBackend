@@ -2,17 +2,20 @@ window.todos = (function () {
     var todo = [];
     var state = "ALL";
     return {
-        removetodo: function(id){
-          todo = todo.filter(function(obj){
-            return !(obj.id === id);
-          });
+        removetodo: function(r_todo){
+                //todo = todo.filter(function(obj){
+                 //   return !(obj.id === id);
+               // });
+               r_todo.do = 'remove';
           $.ajax({
-                type: "POST",
-                data: JSON.stringify(todo),
-                url: "http://localhost:3000/saveTodo",
+                type: "DELETE",
+                data: JSON.stringify(r_todo),
+                url: "http://localhost:3000/todos/" + r_todo.id,
                 contentType: 'application/json',
                 success: function (data) {
                     alert(data.msg);
+                    todo = data.data;
+                    window.todos.getFilteredTodos(); 
                 }
             })
         //   localStorage.setItem('todoList',JSON.stringify(todo));
@@ -33,9 +36,9 @@ window.todos = (function () {
         },
         getSessiondata: function() {
             $.ajax({
-                url: "http://localhost:3000/getTodos",
+                url: "http://localhost:3000/todos",
                 success: function (data) {
-                    alert(data.msg);
+                   // alert(data.msg);
                     todo = data.data;
                     const event = new Event('todoListUpdated');
                     event.todos = todo;
@@ -50,26 +53,50 @@ window.todos = (function () {
             const singleTodo = {
                 name: name,
                 id: Math.random(),
-                isCompleted: false
+                isCompleted: false,
+                do: 'add'
             };
+             
+            $.ajax({
+                type: "POST",
+                data: JSON.stringify(singleTodo),
+                contentType: 'application/json',
+                url: "http://localhost:3000/todos",
+                success: function (data) {
+                    alert(data.msg);
+                    window.todos.getFilteredTodos();
+                }
+            });
 
-            todo.push(singleTodo);
-            window.todos.getFilteredTodos();
+            //todo.push(singleTodo);
+            //window.todos.getFilteredTodos();
             // return singleTodo;
         },
         getAllTodos: function() {
             // localStorage.setItem('todoList',JSON.stringify(todo));
-            const event = new Event('todoListUpdated');
-            event.todos = todo;
-
+           
+           /*  const event = new Event('todoListUpdated');
+             event.todos = todo;
             window.dispatchEvent(event);
-            $.ajax({
+           $.ajax({
                 type: "POST",
                 data: JSON.stringify(todo),
                 contentType: 'application/json',
                 url: "http://localhost:3000/saveTodo",
                 success: function (data) {
                     alert(data.msg);
+                
+                }
+            });*/
+         
+             $.ajax({
+                url: "http://localhost:3000/todos",
+                success: function (data) {
+                   // alert(data.msg);
+                    todo = data.data;
+                    const event = new Event('todoListUpdated');
+                    event.todos = todo;
+                    window.dispatchEvent(event);
                 }
             });
         },
@@ -102,10 +129,10 @@ window.todos = (function () {
             window.dispatchEvent(event);
 
             $.ajax({
-                type: "POST",
+                type: "PUT",
                 data: JSON.stringify(todo),
                 contentType: 'application/json',
-                url: "http://localhost:3000/saveTodo",
+                url: "http://localhost:3000/todos",
                 success: function (data) {
                     alert(data.msg);
                 }
@@ -116,20 +143,21 @@ window.todos = (function () {
             todo = todo.map(function(todoObj) {
                 if (todoObj.id === id) {
                     todoObj.isCompleted = !todoObj.isCompleted;
+
                 }
                 return todoObj;
             });
             // localStorage.setItem('todoList',JSON.stringify(todo));
-            window.todos.getFilteredTodos();
 
 
             $.ajax({
-                type: "POST",
+                type: "PUT",
                 contentType: 'application/json',
-                url: "http://localhost:3000/saveTodo",
+                url: "http://localhost:3000/todos",
                 data: JSON.stringify(todo),
                 success: function (data) {
                     alert(data.msg);
+                    window.todos.getFilteredTodos();
                 }
             })
         }

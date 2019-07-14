@@ -7,11 +7,7 @@ const jsonParser = bodyParser.json();
 
 
 
-var todos = [{
-    name: "Dinner",
-    id: Math.random(),
-    isCompleted: false
-}];
+var todos = [];
 
 app.use(express.static('src'))
 
@@ -26,17 +22,59 @@ app.listen(port, function() {
     console.log(`Server listening on port ${port}!`);
 });
 
-app.post('/saveTodo', jsonParser, function (req, res) {
-    todos = req.body;
-    
+app.delete("/todos/:id", jsonParser, function (req, res) {
+    const itemId = req.params.id;
+
+    todos = todos.filter(function(obj){
+        return !(String(obj.id) === itemId);
+    });
+
     res.json({
         success: true,
         msg: "Todo saved Successfull",
-        data: null
+        data: todos
     });
 });
 
-app.get('/getTodos', function (req, res) {
+app.post("/todos", jsonParser, function(req, res) {
+    const X = req.body;
+    todos.push(X);
+
+    res.json({
+        success: true,
+        msg: "Todo saved Successfull",
+        data: todos
+    });
+});
+
+app.put('/todos', jsonParser, function (req, res) {
+    const X = req.body;
+    
+    todos = X;
+    res.json({
+        success: true,
+        msg: "Todo saved Successfull",
+        data: todos
+    });
+
+    // if(X.do === 'add'){
+    //     todos.push(X);
+    // }
+    // else{
+    //     todos = todos.filter(function(obj){
+    //      return !(obj.id === X.id);
+    // })
+    //  }
+    // console.log(todos);
+    // res.json({
+    //     success: true,
+    //     msg: "Todo saved Successfull",
+    //     data: todos
+    // });
+
+});
+
+app.get('/todos', function (req, res) {
     // res.setHeader('Content-Type', 'application/json');
 
     const response = {
